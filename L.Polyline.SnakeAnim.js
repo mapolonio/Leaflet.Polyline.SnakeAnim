@@ -44,16 +44,14 @@ L.Polyline.include({
 		this._snakingVertices = this._snakingRings = this._snakingDistance = 0;
 
 		if (!this._snakeLatLngs) {
-			this._snakeLatLngs = L.Polyline._flat(this._latlngs) ?
-				[ this._latlngs ] :
-				this._latlngs ;
+			this._snakeLatLngs = this._latlngs;
 		}
 
 		// Init with just the first (0th) vertex in a new ring
 		// Twice because the first thing that this._snake is is chop the head.
-		this._latlngs = [[ this._snakeLatLngs[0][0], this._snakeLatLngs[0][0] ]];
+		this._latlngs = [this._snakeLatLngs[0], this._snakeLatLngs[0]];
 
-		this._update();
+		this._updatePath();
 		this._snake();
 		this.fire('snakestart');
 		return this;
@@ -68,7 +66,7 @@ L.Polyline.include({
 		this._snakingTime = now;
 
 		// Chop the head from the previous frame
-		this._latlngs[ this._snakingRings ].pop();
+		this._latlngs.pop();
 
 		return this._snakeForward(forward);
 	},
@@ -77,30 +75,22 @@ L.Polyline.include({
 
 		// Calculate distance from current vertex to next vertex
 		var currPoint = this._map.latLngToContainerPoint(
-			this._snakeLatLngs[ this._snakingRings ][ this._snakingVertices ]);
+			this._snakeLatLngs[ this._snakingVertices ]);
 		var nextPoint = this._map.latLngToContainerPoint(
-			this._snakeLatLngs[ this._snakingRings ][ this._snakingVertices + 1 ]);
+			this._snakeLatLngs[ this._snakingVertices + 1 ]);
 
 		var distance = currPoint.distanceTo(nextPoint);
 
-// 		console.log('Distance to next point:', distance, '; Now at: ', this._snakingDistance, '; Must travel forward:', forward);
-// 		console.log('Vertices: ', this._latlngs);
+ 		//console.log('Distance to next point:', distance, '; Now at: ', this._snakingDistance, '; Must travel forward:', forward);
+ 		//console.log('Vertices: ', this._latlngs);
 
 		if (this._snakingDistance + forward > distance) {
 			// Jump to next vertex
 			this._snakingVertices++;
-			this._latlngs[ this._snakingRings ].push( this._snakeLatLngs[ this._snakingRings ][ this._snakingVertices ] );
+			this._latlngs.push( this._snakeLatLngs[ this._snakingVertices ] );
 
-			if (this._snakingVertices >= this._snakeLatLngs[ this._snakingRings ].length - 1 ) {
-				if (this._snakingRings >= this._snakeLatLngs.length - 1 ) {
-					return this._snakeEnd();
-				} else {
-					this._snakingVertices = 0;
-					this._snakingRings++;
-					this._latlngs[ this._snakingRings ] = [
-						this._snakeLatLngs[ this._snakingRings ][ this._snakingVertices ]
-					];
-				}
+			if (this._snakingVertices >= this._snakeLatLngs.length - 1 ) {
+				return this._snakeEnd();
 			}
 
 			this._snakingDistance -= distance;
@@ -117,7 +107,7 @@ L.Polyline.include({
 
 		// Put a new head in place.
 		var headLatLng = this._map.containerPointToLatLng(headPoint);
-		this._latlngs[ this._snakingRings ].push(headLatLng);
+		this._latlngs.push(headLatLng);
 
 		this.setLatLngs(this._latlngs);
 		this.fire('snake');
@@ -142,7 +132,7 @@ L.Polyline.mergeOptions({
 
 
 
-
+/*
 L.LayerGroup.include({
 
 	_snakingLayers: [],
@@ -207,6 +197,8 @@ L.LayerGroup.include({
 L.LayerGroup.mergeOptions({
 	snakingPause: 200
 });
+*/
+
 
 
 

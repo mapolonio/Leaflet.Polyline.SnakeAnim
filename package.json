@@ -1,20 +1,68 @@
 {
-  "name": "leaflet.polyline.snakeanim",
-  "version": "0.1.1",
-  "description": "Animates Leaflet polylines so they creep into full length",
-  "main": "L.Polyline.SnakeAnim.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/IvanSanchez/Leaflet.Polyline.SnakeAnim.git"
-  },
-  "keywords": [
-    "leaflet",
-    "polyline",
-    "animation"
+  "_args": [
+    [
+      "https://github.com/IvanSanchez/Leaflet.Polyline.SnakeAnim.git",
+      "/datos/development/proyectos/proyectos_csw/webgis2"
+    ]
   ],
-  "author": "Iván Sánchez Ortega <ivan@sanchezortega.es>",
-  "license": "Beerware",
+  "_from": "git+https://github.com/IvanSanchez/Leaflet.Polyline.SnakeAnim.git#1da8dd44489fcdfcd62f57c7ad58cec0e286477e",
+  "_id": "Leaflet.Polyline.SnakeAnim@0.1.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/Leaflet.Polyline.SnakeAnim",
+  "_phantomChildren": {},
+  "_requested": {
+    "hosted": {
+      "directUrl": "https://raw.githubusercontent.com/IvanSanchez/Leaflet.Polyline.SnakeAnim/master/package.json",
+      "gitUrl": "git://github.com/IvanSanchez/Leaflet.Polyline.SnakeAnim.git",
+      "httpsUrl": "git+https://github.com/IvanSanchez/Leaflet.Polyline.SnakeAnim.git",
+      "shortcut": "github:IvanSanchez/Leaflet.Polyline.SnakeAnim",
+      "ssh": "git@github.com:IvanSanchez/Leaflet.Polyline.SnakeAnim.git",
+      "sshUrl": "git+ssh://git@github.com/IvanSanchez/Leaflet.Polyline.SnakeAnim.git",
+      "type": "github"
+    },
+    "name": null,
+    "raw": "https://github.com/IvanSanchez/Leaflet.Polyline.SnakeAnim.git",
+    "rawSpec": "https://github.com/IvanSanchez/Leaflet.Polyline.SnakeAnim.git",
+    "scope": null,
+    "spec": "git+https://github.com/IvanSanchez/Leaflet.Polyline.SnakeAnim.git",
+    "type": "hosted"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git+https://github.com/IvanSanchez/Leaflet.Polyline.SnakeAnim.git#1da8dd44489fcdfcd62f57c7ad58cec0e286477e",
+  "_shasum": "4a56bc5e498b094b2a7644ad61851170df9f21ee",
+  "_shrinkwrap": null,
+  "_spec": "https://github.com/IvanSanchez/Leaflet.Polyline.SnakeAnim.git",
+  "_where": "/datos/development/proyectos/proyectos_csw/webgis2",
+  "author": {
+    "email": "ivan@sanchezortega.es",
+    "name": "Iván Sánchez Ortega"
+  },
   "bugs": {
     "url": "https://github.com/IvanSanchez/Leaflet.Polyline.SnakeAnim/issues"
-  }
+  },
+  "dependencies": {},
+  "description": "Animates Leaflet polylines so they creep into full length",
+  "devDependencies": {},
+  "gitHead": "1da8dd44489fcdfcd62f57c7ad58cec0e286477e",
+  "homepage": "https://github.com/IvanSanchez/Leaflet.Polyline.SnakeAnim#readme",
+  "keywords": [
+    "animation",
+    "leaflet",
+    "polyline"
+  ],
+  "license": "Beerware",
+  "main": "L.Polyline.SnakeAnim.js",
+  "name": "Leaflet.Polyline.SnakeAnim",
+  "optionalDependencies": {},
+  "readme": "# Leaflet.Polyline.SnakeAnim\n\n\nA plugin for [LeafletJS](http://www.leafletjs.com) to make polylines animate into existence.\n\n\n![Screencapture GIF](demo.gif)\n\nAnimation is time- and distance- based: the more time elapsed into the animation,\nthe longer the visible length of the polyline.\n\nAlso works on layer groups:\n\n![Screencapture GIF](demo-group.gif)\n\nWorks only with Leaflet 1.0.0-beta2 or higher. Does **not** work with Leaflet 0.7.x.\n\n### API\n\nNew method in both `L.Polyline` and `L.LayerGroup`: `snakeIn()`. Call it to\ntrigger the animation.\n\nNew option in `L.Polyline`: `snakingSpeed`. This is the speed of the animation,\nin pixels per second. Pixels refer to the length of the polyline at the current\nzoom level. The default value is 200.\n\nNew option in `L.LayerGroup`: `snakingPause`. This is the number of milliseconds\nto wait between layers in the group when doing a snaking animation.\n\n```js\nvar line = L.polyline(latlngs, {snakingSpeed: 200});\nline.addTo(map).snakeIn();\n```\n\n```js\nvar route = L.layerGroup([\n\tL.marker(airport1),\n\tL.polyline([airport1, airport2]),\n\tL.marker(airport2)\n], { snakingPause: 200 });\nroute.addTo(map).snakeIn();\n```\n\nWhen a polyline or layer group is performing the snaking animation, it will\nfire `snakestart`, `snake` and `snakeend` events.\n\n### Legalese\n\n\n\"THE BEER-WARE LICENSE\":\n<ivan@sanchezortega.es> wrote this file. As long as you retain this notice you\ncan do whatever you want with this stuff. If we meet some day, and you think\nthis stuff is worth it, you can buy me a beer in return.\n\n\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IvanSanchez/Leaflet.Polyline.SnakeAnim.git"
+  },
+  "version": "0.1.0"
 }
+
